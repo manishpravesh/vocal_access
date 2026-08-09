@@ -1,0 +1,24 @@
+actions:
+  - name: triggerWorkflowRun
+    definition:
+      handler: "{{NHOST_FUNCTIONS_URL}}/v1/trigger-workflow-run"
+      kind: synchronous
+      type: mutation
+      forward_client_headers: true
+    permissions:
+      - role: user
+  - name: approveStep
+    definition:
+      handler: "{{NHOST_FUNCTIONS_URL}}/v1/approve-step"
+      kind: synchronous
+      type: mutation
+      forward_client_headers: true
+    permissions:
+      - role: user
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+    - name: TriggerWorkflowRunOutput
+    - name: ApproveStepOutput
+  scalars: []

@@ -1,0 +1,22 @@
+version = 3
+
+[global]
+environment = [
+  { name = "NHOST_SUBDOMAIN", value = "local" },
+  { name = "NHOST_REGION", value = "local" },
+]
+
+[hasura]
+version = "v2.33.0"
+
+[hasura.jwt]
+secret = "{{NHOST_JWT_SECRET}}"
+claims_namespace = "https://hasura.io/jwt/claims"
+
+[auth]
+version = "0.29.1"
+[auth.session]
+accessToken.expiresIn = 3600
+
+[functions]
+node = "18"
