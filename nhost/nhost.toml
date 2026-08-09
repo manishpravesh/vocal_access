@@ -5,7 +5,7 @@ environment = []
 capacity = 1
 
 [hasura]
-version = "v2.33.0-ce"
+version = "v2.36.10-ce"
 adminSecret = "{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}"
 
 [[hasura.jwtSecrets]]
@@ -16,13 +16,13 @@ key = "{{ secrets.NHOST_JWT_PUBLIC_KEY }}"
 version = 20
 
 [auth]
-version = "0.32.1"
+version = "0.50.1"
 
 [auth.session.accessToken]
 expiresIn = 3600
 
 [storage]
-version = "0.3.7"
+version = "0.15.0"
 
 [observability.grafana]
 adminPassword = "{{ secrets.GRAFANA_ADMIN_PASSWORD }}"
