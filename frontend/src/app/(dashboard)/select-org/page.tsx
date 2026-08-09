@@ -25,7 +25,7 @@ export default function SelectOrg() {
 
   const fetchOrgs = async () => {
     try {
-      const token = nhost.auth.getAccessToken();
+      const token = nhost.getUserSession()?.accessToken || '';
       // Use GraphQL directly to fetch orgs user belongs to
       const query = `
         query {
@@ -63,7 +63,7 @@ export default function SelectOrg() {
   const handleSelectOrg = async (orgId: string) => {
     setLoading(true);
     try {
-      const token = nhost.auth.getAccessToken();
+      const token = nhost.getUserSession()?.accessToken || '';
       const subdomain = process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN || 'local';
       const region = process.env.NEXT_PUBLIC_NHOST_REGION || 'local';
       

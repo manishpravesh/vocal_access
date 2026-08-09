@@ -8,28 +8,9 @@ export function useAuth() {
   const router = useRouter();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const auth = await nhost.auth.isAuthenticatedAsync();
-      setIsAuthenticated(auth);
-      if (auth) {
-        setUser(nhost.auth.getUser());
-      }
-    };
-
-    checkAuth();
-    
-    const { unsubscribe } = nhost.auth.onAuthStateChanged((event, session) => {
-      if (event === 'SIGNED_IN' || event === 'TOKEN_CHANGED') {
-        setIsAuthenticated(true);
-        setUser(session?.user || null);
-      } else if (event === 'SIGNED_OUT') {
-        setIsAuthenticated(false);
-        setUser(null);
-        localStorage.removeItem('nhostCustomToken');
-      }
-    });
-
-    return unsubscribe;
+    const session = nhost.getUserSession();
+    setIsAuthenticated(Boolean(session));
+    setUser(session?.user || null);
   }, []);
 
   return { isAuthenticated, user };

@@ -42,7 +42,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         <div className="p-4 border-t border-glass">
           <button 
-            onClick={() => nhost.auth.signOut()}
+            onClick={async () => {
+              const session = nhost.getUserSession();
+              await nhost.auth.signOut({ refreshToken: session?.refreshToken, all: true });
+              window.location.href = '/login';
+            }}
             className="w-full text-left px-4 py-2 text-sm text-secondary hover:text-white transition"
           >
             Sign Out

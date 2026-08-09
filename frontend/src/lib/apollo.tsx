@@ -17,6 +17,7 @@ function getStoredToken() {
 export function CustomApolloProvider({ children }: { children: ReactNode }) {
   const subdomain = process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN || 'local';
   const region = process.env.NEXT_PUBLIC_NHOST_REGION || 'local';
+  const authorization = getStoredToken();
   
   const endpoint = subdomain === 'local' 
     ? 'localhost:8080/v1/graphql' 
@@ -24,9 +25,9 @@ export function CustomApolloProvider({ children }: { children: ReactNode }) {
 
   const httpLink = new HttpLink({
     uri: `https://${endpoint}`,
-    headers: () => ({
+    headers: {
       Authorization: `Bearer ${getStoredToken()}`,
-    }),
+    },
   });
 
   const wsLink = typeof window !== 'undefined' ? new GraphQLWsLink(
@@ -34,7 +35,7 @@ export function CustomApolloProvider({ children }: { children: ReactNode }) {
       url: `wss://${endpoint}`,
       connectionParams: () => ({
         headers: {
-          Authorization: `Bearer ${getStoredToken()}`,
+          Authorization: `Bearer ${authorization}`,
         },
       }),
     })

@@ -19,12 +19,14 @@ export default function Login() {
 
     try {
       if (isLogin) {
-        const { session, error } = await nhost.auth.signIn({ email, password });
-        if (error) throw error;
+        const { body, status } = await nhost.auth.signInEmailPassword({ email, password });
+        if (status >= 400) throw new Error('Invalid email or password');
+        const session = body.session;
         if (session) router.push('/select-org');
       } else {
-        const { session, error } = await nhost.auth.signUp({ email, password });
-        if (error) throw error;
+        const { body, status } = await nhost.auth.signUpEmailPassword({ email, password });
+        if (status >= 400) throw new Error('Unable to create account');
+        const session = body.session;
         if (session) router.push('/select-org');
       }
     } catch (err: any) {

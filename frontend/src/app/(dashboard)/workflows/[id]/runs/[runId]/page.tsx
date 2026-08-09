@@ -51,14 +51,45 @@ const APPROVE_STEP = gql`
   }
 `;
 
+type RunQueryData = {
+  workflow_runs_by_pk: {
+    id: string;
+    status: string;
+    started_at?: string | null;
+    completed_at?: string | null;
+    error?: string | null;
+    workflow: {
+      name: string;
+      org_id: string;
+    };
+  } | null;
+};
+
+type StepsQueryData = {
+  step_runs: Array<{
+    id: string;
+    step_order: number;
+    status: string;
+    input?: unknown;
+    output?: Record<string, unknown> | null;
+    error?: string | null;
+    approved_by?: string | null;
+    approved_at?: string | null;
+    workflow_step: {
+      name: string;
+      step_type: string;
+    };
+  }>;
+};
+
 export default function RunView({ params }: { params: { id: string, runId: string } }) {
   const { orgId } = useOrg();
   
-  const { data: runData, loading: runLoading } = useSubscription(WATCH_RUN, {
+  const { data: runData, loading: runLoading } = useSubscription<RunQueryData, { id: string }>(WATCH_RUN, {
     variables: { id: params.runId }
   });
   
-  const { data: stepsData, loading: stepsLoading } = useSubscription(WATCH_STEPS, {
+  const { data: stepsData, loading: stepsLoading } = useSubscription<StepsQueryData, { run_id: string }>(WATCH_STEPS, {
     variables: { run_id: params.runId }
   });
 

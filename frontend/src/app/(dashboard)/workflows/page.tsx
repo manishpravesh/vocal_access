@@ -28,11 +28,31 @@ const GET_WORKFLOWS = gql`
   }
 `;
 
+type WorkflowQueryData = {
+  workflows: Array<{
+    id: string;
+    name: string;
+    description?: string | null;
+    is_active: boolean;
+    steps_aggregate: { aggregate: { count: number } };
+    runs: Array<{
+      id: string;
+      status: string;
+      created_at: string;
+    }>;
+  }>;
+  org_usage_stats: Array<{
+    quota_limit: number;
+    quota_used: number;
+    total_runs_this_month?: number | null;
+  }>;
+};
+
 export default function Workflows() {
   const { orgId } = useOrg();
   
-  const { data, loading, error } = useQuery(GET_WORKFLOWS, {
-    variables: { org_id: orgId },
+  const { data, loading, error } = useQuery<WorkflowQueryData, { org_id: string }>(GET_WORKFLOWS, {
+    variables: { org_id: orgId ?? '' },
     skip: !orgId,
     pollInterval: 10000, // Poll every 10s for updates
   });
@@ -41,7 +61,7 @@ export default function Workflows() {
   if (error) return <div className="p-10 text-red-500">Error: {error.message}</div>;
 
   const workflows = data?.workflows || [];
-  const stats = data?.org_usage_stats?.[0] || { quota_limit: 100, quota_used: 0 };
+  const stats = data?.org_usage_stats?.[0] ?? { quota_limit: 100, quota_used: 0, total_runs_this_month: 0 };
   
   const quotaPercentage = (stats.quota_used / stats.quota_limit) * 100;
 
