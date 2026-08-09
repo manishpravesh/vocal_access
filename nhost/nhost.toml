@@ -1,4 +1,5 @@
 [global]
+environment = []
 
 [hasura]
 version = "v2.33.0-ce"
