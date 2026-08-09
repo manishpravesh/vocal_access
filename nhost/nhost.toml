@@ -6,6 +6,7 @@ capacity = 1
 
 [hasura]
 version = "v2.33.0-ce"
+adminSecret = "{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}"
 
 [[hasura.jwtSecrets]]
 type = "RS256"
