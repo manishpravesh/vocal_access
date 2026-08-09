@@ -6,7 +6,7 @@ version = "v2.33.0-ce"
 
 [[hasura.jwtSecrets]]
 type = "HS256"
-key = "{{ secrets.NHOST_JWT_SECRET }}"
+key = "{{ system.secrets.NHOST_JWT_SECRET }}"
 
 [functions.node]
 version = 20
