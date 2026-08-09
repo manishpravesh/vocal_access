@@ -3,10 +3,6 @@
 [hasura]
 version = "v2.33.0-ce"
 
-[hasura.jwt]
-secret = "{{NHOST_JWT_SECRET}}"
-claims_namespace = "https://hasura.io/jwt/claims"
-
 [functions.node]
 version = 18
 
