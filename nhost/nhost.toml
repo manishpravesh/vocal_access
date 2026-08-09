@@ -3,11 +3,10 @@ environment = []
 
 [hasura]
 version = "v2.33.0-ce"
+
 [[hasura.jwtSecrets]]
-type = "HS256"
+type = "RS256"
 key = "{{ secrets.NHOST_JWT_PUBLIC_KEY }}"
-
-
 
 [functions.node]
 version = 20
