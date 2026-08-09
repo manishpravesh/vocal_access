@@ -7,14 +7,12 @@ version = "v2.33.0-ce"
 secret = "{{NHOST_JWT_SECRET}}"
 claims_namespace = "https://hasura.io/jwt/claims"
 
-[functions]
 [functions.node]
 version = 18
 
 [auth]
 version = "0.32.1"
 
-[auth.session]
 [auth.session.accessToken]
 expiresIn = 3600
 
