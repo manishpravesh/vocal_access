@@ -5,7 +5,7 @@ environment = []
 version = "v2.33.0-ce"
 
 [functions.node]
-version = 18
+version = 20
 
 [auth]
 version = "0.32.1"
