@@ -1,0 +1,5 @@
+version: 3
+endpoint: ""
+metadata_directory: metadata
+migrations_directory: migrations
+seeds_directory: seeds
