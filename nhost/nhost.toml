@@ -24,10 +24,7 @@ adminSecret = "{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}"
 version = "v2.48.10-ce"
 webhookSecret = "{{ secrets.NHOST_WEBHOOK_SECRET }}"
 
-[[hasura.jwtSecrets]]
-key = "{{ secrets.NHOST_JWT_PUBLIC_KEY }}"
-kid = "{{ secrets.NHOST_JWT_KID }}"
-type = "RS256"
+
 
 [observability.grafana]
 adminPassword = "{{ secrets.GRAFANA_ADMIN_PASSWORD }}"
