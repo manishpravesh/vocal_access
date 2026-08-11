@@ -1,36 +1,16 @@
 [auth]
 version = "0.49.1"
-
 [auth.redirections]
-allowedUrls = [ "https://vocal-access-nine.vercel.app" ]
+allowedUrls = ["https://vocal-access-nine.vercel.app"]
 clientUrl = "https://vocal-access-nine.vercel.app"
-
-[auth.session.accessToken]
-expiresIn = 3_600
-
 [auth.signUp]
-disableAutoSignup = false
-disableNewUsers = false
 enabled = true
-
 [functions.node]
 version = 20
-
-[global]
-environment = [ ]
-
 [hasura]
 adminSecret = "{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}"
-version = "v2.48.10-ce"
-webhookSecret = "{{ secrets.NHOST_WEBHOOK_SECRET }}"
-
-
-
-[observability.grafana]
-adminPassword = "{{ secrets.GRAFANA_ADMIN_PASSWORD }}"
-
+version = "v2.36.10-ce"
 [postgres.resources.storage]
 capacity = 1
-
 [storage]
-version = "0.14.0"
+version = "0.15.0"
