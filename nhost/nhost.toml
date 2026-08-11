@@ -21,7 +21,7 @@ environment = [ ]
 
 [hasura]
 adminSecret = "{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}"
-version = "v2.36.10-ce"
+version = "v2.48.10-ce"
 webhookSecret = "{{ secrets.NHOST_WEBHOOK_SECRET }}"
 
 [[hasura.jwtSecrets]]
@@ -36,4 +36,4 @@ adminPassword = "{{ secrets.GRAFANA_ADMIN_PASSWORD }}"
 capacity = 1
 
 [storage]
-version = "0.15.0"
+version = "0.14.0"
